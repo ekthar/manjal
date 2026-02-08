@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import ScrollReveal from './ScrollReveal';
+import '../styles/gallery.css';
 
 // You can add or remove photos from this list. 
 // Files are loaded from the "public" folder.
@@ -17,14 +18,130 @@ const albumPhotos = [
     '/wallhaven-jeew7y - Copy (4).jpg'
 ];
 
+const LazyImage: React.FC<{
+    src: string;
+    alt?: string;
+    className?: string;
+    photosLoadStarted: boolean;
+    rootId?: string;
+    onLoadDims?: (w: number, h: number) => void;
+    onClick?: () => void;
+}> = ({ src, alt = '', className = '', photosLoadStarted, rootId = 'gallery-scroll', onLoadDims, onClick }) => {
+    const wrapperRef = useRef<HTMLDivElement | null>(null);
+    const [visible, setVisible] = useState(false);
+    const [loaded, setLoaded] = useState(false);
+
+    useEffect(() => {
+        if (!photosLoadStarted) return;
+        const node = wrapperRef.current;
+        if (!node) return;
+
+        const rootEl = document.getElementById(rootId) || null;
+        const obs = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setVisible(true);
+                        obs.disconnect();
+                    }
+                });
+            },
+            { root: rootEl, rootMargin: '200px', threshold: 0.05 }
+        );
+
+        obs.observe(node);
+        return () => obs.disconnect();
+    }, [photosLoadStarted, rootId]);
+
+    return (
+        <div ref={wrapperRef} className={className} onClick={onClick} role={onClick ? 'button' : undefined} tabIndex={onClick ? 0 : undefined}>
+            {visible ? (
+                <img
+                    src={src}
+                    alt={alt}
+                    className="w-full h-full object-cover transition-opacity duration-300 group-hover:scale-110 opacity-80 group-hover:opacity-100"
+                    loading="lazy"
+                    decoding="async"
+                    onLoad={(e) => {
+                        const img = e.currentTarget as HTMLImageElement;
+                        setLoaded(true);
+                        if (onLoadDims) onLoadDims(img.naturalWidth, img.naturalHeight);
+                        // ensure visible after load
+                        img.style.visibility = 'visible';
+                    }}
+                    style={{ visibility: loaded ? 'visible' : 'hidden' }}
+                />
+            ) : (
+                <div className="w-full h-full bg-gradient-to-b from-zinc-800 to-zinc-900 animate-pulse" />
+            )}
+        </div>
+    );
+};
+
 const AboutGallery: React.FC = () => {
     const [isGalleryOpen, setIsGalleryOpen] = useState(false);
+    const [photosLoadStarted, setPhotosLoadStarted] = useState(false);
+    const [aspectMap, setAspectMap] = useState<Record<number, number>>({});
+    const [activeIndex, setActiveIndex] = useState<number | null>(null);
+
+    useEffect(() => {
+        let t: number | undefined;
+        if (isGalleryOpen) {
+            // Defer starting image loads slightly so the opening animation can finish
+            // and avoid heavy main-thread work immediately on click.
+            t = window.setTimeout(() => setPhotosLoadStarted(true), 180);
+        } else {
+            setPhotosLoadStarted(false);
+            if (t) clearTimeout(t);
+        }
+
+        return () => {
+            if (t) clearTimeout(t);
+        };
+    }, [isGalleryOpen]);
+
+    useEffect(() => {
+        const onKey = (e: KeyboardEvent) => {
+            if (activeIndex === null) return;
+            if (e.key === 'Escape') setActiveIndex(null);
+            if (e.key === 'ArrowLeft') setActiveIndex((i) => (i === null ? null : (i - 1 + albumPhotos.length) % albumPhotos.length));
+            if (e.key === 'ArrowRight') setActiveIndex((i) => (i === null ? null : (i + 1) % albumPhotos.length));
+        };
+        window.addEventListener('keydown', onKey);
+        return () => window.removeEventListener('keydown', onKey);
+    }, [activeIndex]);
+
+    // Lock body scroll when lightbox is open
+    useEffect(() => {
+        if (activeIndex !== null) {
+            const prev = document.body.style.overflow;
+            document.body.style.overflow = 'hidden';
+            return () => { document.body.style.overflow = prev; };
+        }
+        return;
+    }, [activeIndex]);
+
+    const setAspect = (index: number, w: number, h: number) => {
+        if (!w || !h) return;
+        setAspectMap((m) => ({ ...m, [index]: w / h }));
+    };
+
+    const openAt = (index: number) => {
+        // Close the modal when opening the fullscreen lightbox to avoid overlay stacking
+        setIsGalleryOpen(false);
+        setActiveIndex(index);
+    };
+
+    const closeLightbox = () => setActiveIndex(null);
+
+    const prev = () => setActiveIndex((i) => (i === null ? null : (i - 1 + albumPhotos.length) % albumPhotos.length));
+    const next = () => setActiveIndex((i) => (i === null ? null : (i + 1) % albumPhotos.length));
 
     return (
         <section id="about" className="py-24 bg-theme-base-alt relative overflow-hidden">
             {/* Gallery Modal */}
             {isGalleryOpen && (
-                <div className="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl flex flex-col items-center justify-center p-0 md:p-8 animate-in fade-in duration-300">
+                <div className="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm will-change-transform flex flex-col items-center justify-center p-0 md:p-8 animate-in fade-in duration-300">
                     {/* Header / Close Bar */}
                     <div className="w-full flex justify-end p-4 md:absolute md:top-6 md:right-6 z-50 bg-black/50 md:bg-transparent backdrop-blur-md md:backdrop-blur-none relative">
                         <button 
@@ -36,25 +153,50 @@ const AboutGallery: React.FC = () => {
                         </button>
                     </div>
 
-                    <div className="w-full h-full md:max-w-7xl overflow-y-auto custom-scrollbar px-4 custom-safe-area-bottom pb-20 md:pb-0">
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-20 pt-4 md:pt-0">
-                            {albumPhotos.map((photo, index) => (
-                                <div key={index} className="group relative break-inside-avoid">
-                                    <div className="aspect-[4/5] md:aspect-square w-full rounded-[2rem] overflow-hidden border border-white/5 shadow-2xl relative bg-zinc-900">
-                                         <img 
-                                            src={photo} 
-                                            alt={`Gallery item ${index + 1}`}
-                                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100"
-                                            loading="lazy"
-                                        />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    <div id="gallery-scroll" className="w-full h-full md:max-w-7xl overflow-y-auto custom-scrollbar px-4 custom-safe-area-bottom pb-20 md:pb-0">
+                        <div className="gallery-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-20 pt-4 md:pt-0">
+                            {albumPhotos.map((photo, index) => {
+                                const ratio = aspectMap[index];
+                                const style: React.CSSProperties | undefined = ratio ? { aspectRatio: `${Math.round(ratio * 100)}/${100}` } : undefined;
+                                return (
+                                    <div key={index} className="gallery-item group relative break-inside-avoid">
+                                        <div style={style} className="gallery-card w-full rounded-[2rem] overflow-hidden border border-white/5 shadow-2xl relative bg-zinc-900">
+                                            <LazyImage
+                                                src={photo}
+                                                alt={`Gallery item ${index + 1}`}
+                                                photosLoadStarted={photosLoadStarted}
+                                                rootId="gallery-scroll"
+                                                onLoadDims={(w, h) => setAspect(index, w, h)}
+                                                onClick={() => openAt(index)}
+                                            />
+                                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                                        </div>
                                     </div>
-                                </div>
-                            ))}
+                                );
+                            })}
                         </div>
                     </div>
                 </div>
             )}
+
+            {/* Lightbox / Fullscreen viewer */}
+                    {activeIndex !== null && (
+                        <div
+                            className="fixed inset-0 z-60 flex items-center justify-center bg-black/95"
+                            onClick={closeLightbox}
+                        >
+                            <button onClick={closeLightbox} className="absolute top-6 right-6 z-70 bg-black/40 p-2 rounded-full text-white/80 hover:text-white">
+                                {/* @ts-ignore */}
+                                <iconify-icon icon="solar:close-circle-bold" width="28" height="28"></iconify-icon>
+                            </button>
+
+                            <button onClick={(e) => { e.stopPropagation(); prev(); }} className="absolute left-6 z-70 text-white/60 hover:text-white text-3xl">‹</button>
+                            <div className="max-w-[90vw] max-h-[90vh] flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
+                                <img src={albumPhotos[activeIndex]} alt={`Open ${activeIndex + 1}`} className="max-w-full max-h-full object-contain shadow-2xl rounded-lg" />
+                            </div>
+                            <button onClick={(e) => { e.stopPropagation(); next(); }} className="absolute right-6 z-70 text-white/60 hover:text-white text-3xl">›</button>
+                        </div>
+                    )}
 
             <div className="container mx-auto px-6">
                 <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">

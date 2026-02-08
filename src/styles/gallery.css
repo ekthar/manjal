@@ -1,0 +1,35 @@
+/* Responsive gallery rules: auto-fit columns and orientation-aware aspect ratio */
+#gallery-scroll .gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem; /* matches Tailwind gap-6 */
+}
+
+/* Default card aspect ratio (portrait-friendly) */
+#gallery-scroll .gallery-card {
+  aspect-ratio: 4 / 5;
+}
+
+/* Landscape devices: wider cards */
+@media (orientation: landscape) {
+  #gallery-scroll .gallery-card {
+    aspect-ratio: 16 / 9;
+  }
+}
+
+/* Small screens: slightly taller cards to keep a good visual */
+@media (max-width: 420px) {
+  #gallery-scroll .gallery-card {
+    aspect-ratio: 3 / 4;
+  }
+}
+
+/* Smooth image fade when loaded (applies if image becomes visible)
+   Images are controlled inline; use opacity transition when loaded via the img onLoad style if desired. */
+#gallery-scroll .gallery-card img {
+  transition: opacity 260ms ease, transform 420ms ease;
+  opacity: 1;
+}
+#gallery-scroll .gallery-card .loading-placeholder {
+  background: linear-gradient(180deg, #111217 0%, #0f1113 100%);
+}
