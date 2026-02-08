@@ -20,7 +20,7 @@ const MeditatingSilhouette: React.FC<MeditatingSilhouetteProps> = ({ activeChakr
   const activeColorClass = getActiveColor();
 
   return (
-    <div className="relative w-full max-w-[600px] max-h-[80vh] aspect-square flex justify-center mx-auto mt-4 md:mt-0">
+    <div className="chakra-silhouette relative w-full max-w-[600px] max-h-[80vh] aspect-square flex justify-center mx-auto mt-4 md:mt-0">
         
       {/* --- REALISTIC AURA LAYERS (The Auric Egg) --- */}
       <div className="absolute inset-0 pointer-events-none z-0">
@@ -92,6 +92,15 @@ const MeditatingSilhouette: React.FC<MeditatingSilhouetteProps> = ({ activeChakr
              <stop offset="50%" stopColor="white" stopOpacity="0.4" />
              <stop offset="80%" stopColor="white" stopOpacity="0.1" />
              <stop offset="100%" stopColor="white" stopOpacity="0.0" />
+          </linearGradient>
+
+          {/* Light Mode Magnetic Gradient (Black/Dark) */}
+          <linearGradient id="magneticGradientLight" x1="0%" y1="0%" x2="0%" y2="100%">
+             <stop offset="0%" stopColor="#8b5cf6" stopOpacity="0.0" />
+             <stop offset="20%" stopColor="#8b5cf6" stopOpacity="0.1" />
+             <stop offset="50%" stopColor="#8b5cf6" stopOpacity="0.6" />
+             <stop offset="80%" stopColor="#8b5cf6" stopOpacity="0.1" />
+             <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0.0" />
           </linearGradient>
 
           <filter id="energyGlow">

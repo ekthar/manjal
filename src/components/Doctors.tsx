@@ -12,7 +12,7 @@ const doctors = [
 
 const Doctors: React.FC = () => {
     return (
-        <section id="doctors" className="py-24 bg-[#050507] border-t border-white/5 relative">
+        <section id="doctors" className="py-24 bg-theme-base border-t border-white/5 relative">
              <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
             
             <div className="container mx-auto px-6">
@@ -26,7 +26,7 @@ const Doctors: React.FC = () => {
 
                 <div className="flex justify-center">
                     {doctors.map((doc, idx) => (
-                        <div key={idx} className="group bg-[#0a0a0c] rounded-2xl p-6 border border-white/5 hover:border-white/10 transition-all duration-300 hover:-translate-y-2 relative overflow-hidden max-w-sm w-full">
+                        <div key={idx} className="group bg-theme-surface rounded-2xl p-6 border border-white/5 hover:border-white/10 transition-all duration-300 hover:-translate-y-2 relative overflow-hidden max-w-sm w-full">
                             
                             {/* Image Area */}
                             <div className="aspect-[4/5] rounded-xl overflow-hidden mb-6 relative">

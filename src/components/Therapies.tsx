@@ -43,7 +43,7 @@ const Therapies: React.FC = () => {
     return (
         <section id="therapies" className="py-24 bg-[#050507] border-t border-white/5 relative overflow-hidden">
             {/* Background Texture */}
-            <div className="absolute inset-0 opacity-20 pointer-events-none bg-[radial-gradient(circle_at_10%_20%,_rgba(100,50,255,0.1),_transparent)]"></div>
+            <div className="absolute inset-0 opacity-20 pointer-events-none accent-glow-purple"></div>
 
             <div className="container mx-auto px-6 relative z-10">
                 <div className="text-center mb-16">

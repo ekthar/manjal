@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 const Navbar: React.FC = () => {
-        const [scrolled, setScrolled] = useState(false);
-        const [light, setLight] = useState<boolean>(() => {
-                try { return localStorage.getItem('theme') === 'light'; } catch { return false; }
-        });
+    const [scrolled, setScrolled] = useState(false);
 
     useEffect(() => {
         const handle = () => setScrolled(window.scrollY > 8);
@@ -12,14 +9,6 @@ const Navbar: React.FC = () => {
         window.addEventListener('scroll', handle, { passive: true });
         return () => window.removeEventListener('scroll', handle);
     }, []);
-
-        useEffect(() => {
-                try {
-                        if (light) document.documentElement.classList.add('light');
-                        else document.documentElement.classList.remove('light');
-                        localStorage.setItem('theme', light ? 'light' : 'dark');
-                } catch (e) {}
-        }, [light]);
 
     return (
         <nav
@@ -41,23 +30,13 @@ const Navbar: React.FC = () => {
                                 <a href="#consultation" className="hover:text-white focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 rounded transition-colors" aria-label="Book">Book</a>
                         </div>
 
-                                                <div className="flex items-center gap-4">
-                                                                <button
-                                                                        onClick={() => setLight(v => !v)}
-                                                                        aria-pressed={light}
-                                                                        aria-label={light ? 'Switch to dark theme' : 'Switch to light theme'}
-                                                                        className="p-2 rounded-full bg-white/5 hover:bg-white/10 text-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2"
-                                                                >
-                                                                        {/* @ts-ignore */}
-                                                                        <iconify-icon icon={light ? 'ph:sun-duotone' : 'ph:moon-duotone'} width="18"></iconify-icon>
-                                                                </button>
-
-                                                                <a href="#consultation" aria-label="Book consultation" className="bg-white text-black px-5 py-2.5 rounded-full text-xs font-bold hover:bg-gray-200 transition-all flex items-center gap-2 font-inter-tight tracking-wide focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2">
-                                                                                Book Consultation
-                                                                                {/* @ts-ignore */}
-                                                                                <iconify-icon icon="solar:arrow-right-linear" width="14"></iconify-icon>
-                                                                </a>
-                                                </div>
+                        <div className="flex items-center gap-4">
+                                <a href="#consultation" aria-label="Book consultation" className="bg-white text-black px-5 py-2.5 rounded-full text-xs font-bold hover:bg-gray-200 transition-all flex items-center gap-2 font-inter-tight tracking-wide focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2">
+                                        Book Consultation
+                                        {/* @ts-ignore */}
+                                        <iconify-icon icon="solar:arrow-right-linear" width="14"></iconify-icon>
+                                </a>
+                        </div>
                 </div>
         </nav>
     );

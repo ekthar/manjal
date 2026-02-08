@@ -2,13 +2,13 @@ import React from 'react';
 
 const Consultation: React.FC = () => {
     return (
-        <section id="consultation" className="py-24 bg-[#050507] relative border-t border-white/5">
+        <section id="consultation" className="py-24 bg-theme-base relative border-t border-white/5">
             <div className="container mx-auto px-6">
                 
-                <div className="max-w-4xl mx-auto bg-[#0a0a0c] rounded-3xl overflow-hidden border border-white/5 flex flex-col md:flex-row shadow-2xl">
+                <div className="max-w-4xl mx-auto bg-theme-surface rounded-3xl overflow-hidden border border-white/5 flex flex-col md:flex-row shadow-2xl">
                     
                     {/* Left: Contact & WhatsApp */}
-                    <div className="w-full md:w-2/5 bg-[#101014] p-8 md:p-12 flex flex-col justify-between relative overflow-hidden">
+                    <div className="w-full md:w-2/5 bg-theme-surface-strong p-8 md:p-12 flex flex-col justify-between relative overflow-hidden">
                         {/* Decorative Circle */}
                         <div className="absolute -top-10 -right-10 w-40 h-40 bg-white/5 rounded-full blur-2xl"></div>
 
@@ -24,7 +24,7 @@ const Consultation: React.FC = () => {
                             href="https://wa.me/919876543210" 
                             target="_blank" 
                             rel="noopener noreferrer"
-                            className="w-full bg-[#25D366] hover:bg-[#20bd5a] text-white py-4 px-6 rounded-xl font-bold flex items-center justify-center gap-3 transition-all duration-300 hover:shadow-[0_0_20px_rgba(37,211,102,0.3)] group"
+                            className="w-full bg-[#25D366] hover:bg-[#20bd5a] text-white text-white-forced py-4 px-6 rounded-xl font-bold flex items-center justify-center gap-3 transition-all duration-300 hover:shadow-[0_0_20px_rgba(37,211,102,0.3)] group"
                         >
                             {/* @ts-ignore */}
                             <iconify-icon icon="logos:whatsapp-icon" width="24"></iconify-icon>

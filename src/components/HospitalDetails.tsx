@@ -2,9 +2,9 @@ import React from 'react';
 
 const HospitalDetails: React.FC = () => {
     return (
-        <section id="location" className="py-24 bg-[#030305] relative overflow-hidden">
+        <section id="location" className="py-24 bg-theme-base-alt relative overflow-hidden">
              {/* Background Glow */}
-             <div className="absolute right-0 top-1/4 w-96 h-96 bg-blue-900/10 rounded-full blur-[100px] pointer-events-none"></div>
+             <div className="absolute right-0 top-1/4 w-96 h-96 accent-glow-blue rounded-full blur-[100px] pointer-events-none"></div>
 
             <div className="container mx-auto px-6 relative z-10">
                 <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-center">
@@ -12,7 +12,7 @@ const HospitalDetails: React.FC = () => {
                     {/* Map Side */}
                     <div className="w-full lg:w-1/2 relative group">
                         <div className="absolute inset-0 bg-white/5 rounded-3xl transform -rotate-2 transition-transform group-hover:rotate-0"></div>
-                        <div className="relative rounded-3xl overflow-hidden aspect-[4/3] border border-white/10 shadow-2xl bg-[#0a0a0c]">
+                        <div className="relative rounded-3xl overflow-hidden aspect-[4/3] border border-white/10 shadow-2xl bg-theme-surface">
                              
                              {/* Google Map Embed - Dark Mode Filter Applied */}
                              <iframe 
