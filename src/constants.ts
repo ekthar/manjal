@@ -82,7 +82,7 @@ export const CHAKRAS: Chakra[] = [
         color: 'bg-red-600',
         glowColor: 'shadow-[0_0_30px_rgba(220,38,38,0.6)]',
         position: 'top-[77.3%]',
-        icon: 'solar:tree-bold-duotone',
+        icon: 'mdi:circle',
         description: 'The foundation of physical energy and grounding.'
     }
 ];
