@@ -1,41 +1,126 @@
 import React from 'react';
+import ScrollReveal from './ScrollReveal';
 
 const treatments = [
     {
-        name: 'Panchakarma',
-        description: 'A five-step detoxification process to purify the body and mind.',
-        icon: 'solar:waterdrops-bold-duotone',
-        color: 'text-cyan-400'
+        name: 'Shirodhara',
+        description: 'Reduce Stress & Anxiety',
+        icon: 'ri:drop-fill',
+        color: 'text-purple-400'
     },
     {
         name: 'Abhyanga',
-        description: 'Traditional full-body oil massage for rejuvenation and stress relief.',
+        description: 'Calming for the Nerves',
         icon: 'solar:hand-stars-bold-duotone',
         color: 'text-amber-400'
     },
     {
-        name: 'Shirodhara',
-        description: 'A soothing therapy involving pouring warm oil over the forehead.',
-        icon: 'solar:drop-linear',
-        color: 'text-purple-400'
+        name: 'Navarakizhi',
+        description: 'Provide strength & rejuvenate the tissues',
+        icon: 'solar:bone-bold-duotone',
+        color: 'text-orange-400'
     },
     {
-        name: 'Nasyam',
-        description: 'Nasal administration of herbal oils to clear head and neck channels.',
-        icon: 'solar:nose-linear',
-        color: 'text-emerald-400'
-    },
-    {
-        name: 'Kizhi',
-        description: 'Herbal poultice massage to alleviate pain and inflammation.',
+        name: 'Elakizhi',
+        description: 'Relieves body pain & stiffness',
         icon: 'solar:leaf-bold-duotone',
         color: 'text-lime-400'
     },
     {
-        name: 'Udvartana',
-        description: 'Herbal powder massage for weight loss and improved circulation.',
-        icon: 'solar:body-linear',
+        name: 'Shirovasthi',
+        description: 'Balance the Vatha and Kapha',
+        icon: 'ph:head-circuit-duotone',
+        color: 'text-blue-400'
+    },
+    {
+        name: 'Thala Pothichil',
+        description: 'Improves the quality of sleep',
+        icon: 'solar:sleeping-bold-duotone',
+        color: 'text-indigo-400'
+    },
+    {
+        name: 'Karnapooranam',
+        description: 'Helps overcome common to chronic ear complications',
+        icon: 'lucide:ear',
+        color: 'text-pink-400'
+    },
+    {
+        name: 'Udwarthanam',
+        description: 'Reduces excess fat',
+        icon: 'solar:body-bold-duotone',
         color: 'text-rose-400'
+    },
+    {
+        name: 'Pizhichil',
+        description: 'Relieving body pain and increasing rejuvenation',
+        icon: 'solar:waterdrops-bold-duotone',
+        color: 'text-cyan-400'
+    },
+    {
+        name: 'Nasyam',
+        description: 'Heals migraines and headaches',
+        icon: 'healthicons:nose',
+        color: 'text-emerald-400'
+    },
+    {
+        name: 'Ksheera Dhara',
+        description: 'Boost skin glow & relax body and mind',
+        icon: 'solar:sun-fog-bold-duotone',
+        color: 'text-yellow-400'
+    },
+    {
+        name: 'Takra Dhara',
+        description: 'Helps overcome stress & calms the nervous system',
+        icon: 'solar:meditation-round-bold-duotone',
+        color: 'text-teal-400'
+    },
+    {
+        name: 'Kashaya Dhara',
+        description: 'Improves circulation to the skin',
+        icon: 'solar:heart-pulse-bold-duotone',
+        color: 'text-red-400'
+    },
+    {
+        name: 'Mukh Lepam',
+        description: 'Exfoliate the skin',
+        icon: 'lucide:sparkles',
+        color: 'text-fuchsia-400'
+    },
+    {
+        name: 'Rejuvenation Massage',
+        description: 'Holistic massage to revitalize body and mind',
+        icon: 'mdi:spa',
+        color: 'text-violet-400'
+    },
+    {
+        name: 'Shiropichu',
+        description: 'Reduces burning sensation in the scalp',
+        icon: 'lucide:snowflake',
+        color: 'text-sky-400'
+    },
+    {
+        name: 'Kati Vasti',
+        description: 'Strengthening the low back muscles',
+        icon: 'icon-park-twotone:muscle',
+        color: 'text-orange-500'
+    },
+    {
+        name: 'Janu Vasti',
+        description: 'Relief of knee joint pain',
+        icon: 'solar:walking-round-bold-duotone',
+        color: 'text-green-500'
+    },
+    {
+        name: 'Upanaha Sweda',
+        description: 'Relieves pain, swelling & nourishes tissues',
+        icon: 'lucide:bandage',
+        color: 'text-amber-500'
+    },
+    {
+        name: 'Avagaha Sweda',
+        description: 'Treatment of Vata-related issues',
+        icon: 'solar:bath-bold-duotone',
+        color: 'text-blue-500'
     }
 ];
 
@@ -46,6 +131,7 @@ const Therapies: React.FC = () => {
             <div className="absolute inset-0 opacity-20 pointer-events-none accent-glow-purple"></div>
 
             <div className="container mx-auto px-6 relative z-10">
+                <ScrollReveal>
                 <div className="text-center mb-16">
                     <span className="text-purple-400 text-xs font-bold tracking-widest uppercase font-inter-tight">Our Specialities</span>
                     <h2 className="text-3xl md:text-5xl font-bold text-white mt-4 font-inter-tight">Therapeutic Treatments</h2>
@@ -53,10 +139,12 @@ const Therapies: React.FC = () => {
                         Ancient Ayurvedic therapies curated to heal, rejuvenate, and restore your body's vital energy.
                     </p>
                 </div>
+                </ScrollReveal>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {treatments.map((item, idx) => (
-                        <div key={idx} className="group p-8 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-white/10 transition-all duration-300 hover:-translate-y-1">
+                        <ScrollReveal key={idx} delay={`delay-${(idx % 3) * 100}`}>
+                        <div className="group p-8 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-white/10 transition-all duration-300 hover:-translate-y-1 h-full">
                             <div className={`w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-2xl mb-6 ${item.color} group-hover:scale-110 transition-transform duration-300`}>
                                 {/* @ts-ignore */}
                                 <iconify-icon icon={item.icon}></iconify-icon>
@@ -64,6 +152,7 @@ const Therapies: React.FC = () => {
                             <h3 className="text-xl font-bold text-white mb-2 font-inter-tight">{item.name}</h3>
                             <p className="text-gray-400 text-sm leading-relaxed font-light">{item.description}</p>
                         </div>
+                        </ScrollReveal>
                     ))}
                 </div>
             </div>

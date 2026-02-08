@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
-const Navbar: React.FC = () => {
+interface NavbarProps {
+    onOpenServices?: () => void;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ onOpenServices }) => {
     const [scrolled, setScrolled] = useState(false);
 
     useEffect(() => {
@@ -24,6 +28,7 @@ const Navbar: React.FC = () => {
             
             <div className="hidden lg:flex items-center gap-6 text-sm font-medium text-gray-400 font-inter-tight">
                                 <a href="#about" className="hover:text-white focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 rounded transition-colors" aria-label="About">About</a>
+                                <button onClick={onOpenServices} className="hover:text-white focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 rounded transition-colors text-left" aria-label="Treatments">Treatments</button>
                                 <a href="#therapies" className="hover:text-white focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 rounded transition-colors" aria-label="Therapies">Therapies</a>
                                 <a href="#doctors" className="hover:text-white focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 rounded transition-colors" aria-label="Doctors">Doctors</a>
                                 <a href="#location" className="hover:text-white focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 rounded transition-colors" aria-label="Location">Location</a>

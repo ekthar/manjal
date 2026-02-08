@@ -1,13 +1,64 @@
-import React from 'react';
+import React, { useState } from 'react';
+import ScrollReveal from './ScrollReveal';
+
+// You can add or remove photos from this list. 
+// Files are loaded from the "public" folder.
+// Note: Spaces in filenames should be replaced with %20 if they don't load.
+const albumPhotos = [
+    '/rebuilding-wallpaper.jpg',
+    '/wallhaven-jeew7y.jpg',
+    '/rebuilding-wallpaper - Copy.jpg',
+    '/wallhaven-jeew7y - Copy.jpg',
+    '/rebuilding-wallpaper - Copy (2).jpg',
+    '/wallhaven-jeew7y - Copy (2).jpg',
+    '/rebuilding-wallpaper - Copy (3).jpg',
+    '/wallhaven-jeew7y - Copy (3).jpg',
+    '/rebuilding-wallpaper - Copy (4).jpg',
+    '/wallhaven-jeew7y - Copy (4).jpg'
+];
 
 const AboutGallery: React.FC = () => {
+    const [isGalleryOpen, setIsGalleryOpen] = useState(false);
+
     return (
         <section id="about" className="py-24 bg-theme-base-alt relative overflow-hidden">
+            {/* Gallery Modal */}
+            {isGalleryOpen && (
+                <div className="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl flex items-center justify-center p-4 md:p-8 animate-in fade-in duration-300">
+                    <button 
+                        onClick={() => setIsGalleryOpen(false)}
+                        className="absolute top-6 right-6 text-white/50 hover:text-white transition-colors"
+                    >
+                        {/* @ts-ignore */}
+                        <iconify-icon icon="solar:close-circle-bold" width="40"></iconify-icon>
+                    </button>
+
+                    <div className="w-full max-w-7xl h-full overflow-y-auto custom-scrollbar">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-20">
+                            {albumPhotos.map((photo, index) => (
+                                <div key={index} className="group relative break-inside-avoid">
+                                    <div className="aspect-[4/5] md:aspect-square w-full rounded-[2rem] overflow-hidden border border-white/5 shadow-2xl relative bg-zinc-900">
+                                         <img 
+                                            src={photo} 
+                                            alt={`Gallery item ${index + 1}`}
+                                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100"
+                                            loading="lazy"
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            )}
+
             <div className="container mx-auto px-6">
                 <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
                     
                     {/* Left: Text Content */}
                     <div className="w-full lg:w-1/2 order-2 lg:order-1">
+                        <ScrollReveal>
                         <span className="text-purple-400 text-xs font-bold tracking-widest uppercase font-inter-tight flex items-center gap-2 mb-6">
                             <span className="w-6 h-[1px] bg-purple-500"></span>
                             Our Heritage
@@ -38,44 +89,59 @@ const AboutGallery: React.FC = () => {
                                 <p className="text-xs text-gray-500 uppercase tracking-wider mt-1">Happy Patients</p>
                             </div>
                         </div>
+                        </ScrollReveal>
                     </div>
 
                     {/* Right: Instagram Chat Style Gallery */}
                     <div className="w-full lg:w-1/2 order-1 lg:order-2 flex justify-center">
+                    <ScrollReveal delay="delay-200" className="w-full flex justify-center">
                         <div className="relative max-w-sm w-full">
                             
                             {/* Decorative Message Tail/Bubble effect */}
                             <div className="absolute -right-4 top-10 w-8 h-8 bg-[#1a1a1e] rotate-45 z-0 rounded-sm"></div>
 
                             {/* The Stack Container - Removed animate-pulse-slow */}
-                            <div className="bg-[#1a1a1e] p-2 rounded-[2rem] rounded-tr-none shadow-2xl border border-white/5 relative z-10">
+                            <div 
+                                onClick={() => setIsGalleryOpen(true)}
+                                className="bg-[#1a1a1e] p-2 rounded-[2rem] rounded-tr-none shadow-2xl border border-white/5 relative z-10 cursor-pointer hover:scale-[1.02] transition-transform duration-300"
+                            >
                                 
                                 {/* Grid Layout similar to IG multi-image upload */}
-                                <div className="grid grid-cols-2 gap-2">
+                                <div className="grid grid-cols-2 gap-2 pointer-events-none">
                                     {/* Main Large Image */}
                                     <div className="col-span-2 relative group overflow-hidden rounded-2xl aspect-[16/9]">
                                         <div className="absolute inset-0 bg-gray-700"></div> 
-                                        {/* Replace with actual image */}
-                                        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1600334129128-685c5582fd35?q=80&w=800&auto=format&fit=crop')] bg-cover bg-center transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100"></div>
+                                        {/* Use first photo from local list */}
+                                        <div 
+                                            className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100"
+                                            style={{ backgroundImage: `url('${albumPhotos[0]}')` }}
+                                        ></div>
                                     </div>
 
                                     {/* Small Image 1 */}
                                     <div className="relative group overflow-hidden rounded-2xl aspect-square">
                                         <div className="absolute inset-0 bg-gray-800"></div>
-                                        {/* Replace with actual image */}
-                                        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=400&auto=format&fit=crop')] bg-cover bg-center transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100"></div>
+                                        {/* Use second photo */}
+                                        <div 
+                                            className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100"
+                                            style={{ backgroundImage: `url('${albumPhotos[1]}')` }}
+                                        ></div>
                                     </div>
 
                                     {/* Small Image 2 */}
                                     <div className="relative group overflow-hidden rounded-2xl aspect-square">
                                         <div className="absolute inset-0 bg-gray-800"></div>
-                                        {/* Replace with actual image */}
-                                        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1617804676579-43c0d8f0814f?q=80&w=400&auto=format&fit=crop')] bg-cover bg-center transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100"></div>
+                                        {/* Use third photo */}
+                                        <div 
+                                            className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100"
+                                            style={{ backgroundImage: `url('${albumPhotos[2]}')` }}
+                                        ></div>
                                         
                                         {/* "More" overlay effect */}
-                                        <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                                        <div className="absolute inset-0 bg-black/40 flex items-center justify-center transition-opacity">
                                             {/* @ts-ignore */}
-                                            <iconify-icon icon="solar:gallery-wide-bold" className="text-white text-2xl"></iconify-icon>
+                                            <iconify-icon icon="solar:gallery-wide-bold" className="text-white text-3xl drop-shadow-lg"></iconify-icon>
+                                            <span className="absolute top-1/2 left-1/2 transform -translate-x-1/2 translate-y-6 text-[10px] uppercase font-bold text-white/80 tracking-widest mt-1">View All</span>
                                         </div>
                                     </div>
                                 </div>
@@ -89,6 +155,7 @@ const AboutGallery: React.FC = () => {
                             </div>
 
                         </div>
+                        </ScrollReveal>
                     </div>
 
                 </div>
