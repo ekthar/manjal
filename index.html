@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manjal Ayurvedaha</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter Tight', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+            background-color: #030305;
+            color: white;
+        }
+
+        /* Utility class used in components */
+        .font-inter-tight {
+            font-family: 'Inter Tight', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+        }
+        /* Hide scrollbar */
+        ::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+
+        /* --- Aura & Field Animations --- */
+        
+        /* Slow rotation for the entire auric field */
+        @keyframes aura-rotate {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        /* Breathing effect for aura layers */
+        @keyframes aura-breathe {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.4; }
+            50% { transform: translate(-50%, -50%) scale(1.05); opacity: 0.6; }
+        }
+
+        /* Pulse Animations */
+        @keyframes pulse-slow {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.1); }
+        }
+        .animate-pulse-slow {
+            animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px currentColor; opacity: 1; transform: scale(1.25); }
+            50% { box-shadow: 0 0 40px currentColor; opacity: 0.8; transform: scale(1.35); }
+        }
+        .animate-pulse-active {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        /* Magnetic Wave Flow (Smooth continuous movement) */
+        @keyframes magnetic-flow {
+            0% { stroke-dashoffset: 1000; }
+            100% { stroke-dashoffset: 0; }
+        }
+        .animate-magnetic-flow {
+            /* stroke-dasharray must be set in element */
+            animation: magnetic-flow 8s linear infinite;
+        }
+        
+        /* Shimmering effect for solid outlines */
+        @keyframes shimmer-outline {
+            0% { stroke-opacity: 0.5; stroke-width: 1.5; }
+            50% { stroke-opacity: 1; stroke-width: 2.5; }
+            100% { stroke-opacity: 0.5; stroke-width: 1.5; }
+        }
+        .animate-shimmer {
+            animation: shimmer-outline 3s ease-in-out infinite;
+        }
+
+        /* Light theme overrides (applied when `html` has class `light`) */
+        html.light body {
+            background-color: #f7f8fb;
+            color: #0f1724;
+        }
+
+        html.light .text-white { color: #0f1724 !important; }
+        html.light .text-gray-400 { color: #475569 !important; }
+        html.light .bg-[#030305] { background-color: #ffffff !important; }
+        html.light .bg-[#15151a] { background-color: #ffffff !important; }
+        html.light .bg-transparent { background-color: transparent !important; }
+        html.light .border-white\/10 { border-color: rgba(15,23,36,0.06) !important; }
+        html.light .rounded-3xl { box-shadow: 0 2px 12px rgba(2,6,23,0.04); }
+        html.light .bg-white\/5 { background-color: rgba(15,23,36,0.04) !important; }
+        html.light .bg-white { background-color: #ffffff !important; }
+        html.light .shadow-lg { box-shadow: 0 6px 30px rgba(2,6,23,0.06) !important; }
+
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/"
+  }
+}
+</script>
+</head>
+<body>
+    <div id="root"></div>
+<script type="module" src="/src/main.tsx"></script>
+</body>
+</html>
