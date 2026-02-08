@@ -138,8 +138,8 @@ const Hero: React.FC = () => {
             />
         </div>
 
-          {/* Right Content (Chakra List) */}
-          <div className="w-full lg:w-1/3 h-full flex items-center lg:items-start justify-end hidden lg:flex">
+           {/* Right Content (Chakra List) - show only on xl to avoid layout overlap on tablets */}
+           <div className="w-full xl:w-1/3 h-full flex items-center xl:items-start justify-end hidden xl:flex">
              <ChakraList 
                 activeChakra={activeChakra} 
                 onHover={handleHover} 
@@ -148,8 +148,8 @@ const Hero: React.FC = () => {
 
         {/* Mobile/Tablet Horizontal List for Chakras */}
         <div 
-            ref={mobileListRef}
-            className="lg:hidden w-full mt-8 overflow-x-auto pb-8 flex gap-4 snap-x px-6 no-scrollbar z-20"
+          ref={mobileListRef}
+          className="xl:hidden w-full mt-8 overflow-x-auto pb-8 flex gap-4 snap-x px-6 no-scrollbar z-20"
         >
             {CHAKRAS.map((chakra) => {  
                 const isActive = activeChakra === chakra.id;

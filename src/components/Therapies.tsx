@@ -126,16 +126,16 @@ const treatments = [
 
 const Therapies: React.FC = () => {
     return (
-        <section id="therapies" className="py-24 bg-[#469869] border-t border-white/5 relative overflow-hidden">
-            {/* Background Texture (matching green radial accent) */}
-            <div className="absolute inset-0 opacity-24 pointer-events-none bg-[radial-gradient(ellipse_at_top_right,_#2f7a59,_transparent)]"></div>
+        <section id="therapies" className="py-24 bg-[#050507] border-t border-white/5 relative overflow-hidden">
+            {/* Background Texture */}
+            <div className="absolute inset-0 opacity-20 pointer-events-none accent-glow-purple"></div>
 
             <div className="container mx-auto px-6 relative z-10">
                 <ScrollReveal>
                 <div className="text-center mb-16">
-                    <span className="text-[#000000b3] text-xs font-bold tracking-widest uppercase font-inter-tight">Our Specialities</span>
-                    <h2 className="text-3xl md:text-5xl font-bold text-black mt-4 font-inter-tight">Therapeutic Treatments</h2>
-                    <p className="text-[#000000b3] mt-4 max-w-2xl mx-auto font-light">
+                    <span className="text-purple-400 text-xs font-bold tracking-widest uppercase font-inter-tight">Our Specialities</span>
+                    <h2 className="text-3xl md:text-5xl font-bold text-white mt-4 font-inter-tight">Therapeutic Treatments</h2>
+                    <p className="text-gray-400 mt-4 max-w-2xl mx-auto font-light">
                         Ancient Ayurvedic therapies curated to heal, rejuvenate, and restore your body's vital energy.
                     </p>
                 </div>
@@ -144,13 +144,13 @@ const Therapies: React.FC = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {treatments.map((item, idx) => (
                         <ScrollReveal key={idx} delay={`delay-${(idx % 3) * 100}`}>
-                        <div className="group p-8 rounded-2xl bg-[#2f7a59] border border-[#236046] hover:bg-[#357a5f] transition-all duration-300 hover:-translate-y-1 h-full">
-                            <div className={`w-12 h-12 rounded-full bg-[#ffffff14] flex items-center justify-center text-2xl mb-6 ${item.color} group-hover:scale-110 transition-transform duration-300`}>
+                        <div className="group p-8 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-white/10 transition-all duration-300 hover:-translate-y-1 h-full">
+                            <div className={`w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-2xl mb-6 ${item.color} group-hover:scale-110 transition-transform duration-300`}>
                                 {/* @ts-ignore */}
                                 <iconify-icon icon={item.icon}></iconify-icon>
                             </div>
-                            <h3 className="text-xl font-bold text-black mb-2 font-inter-tight">{item.name}</h3>
-                            <p className="text-[#000000b3] text-sm leading-relaxed font-light">{item.description}</p>
+                            <h3 className="text-xl font-bold text-white mb-2 font-inter-tight">{item.name}</h3>
+                            <p className="text-gray-400 text-sm leading-relaxed font-light">{item.description}</p>
                         </div>
                         </ScrollReveal>
                     ))}
