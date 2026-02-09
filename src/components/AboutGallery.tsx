@@ -77,7 +77,8 @@ const LazyImage: React.FC<{
                     }
                 });
             },
-            { root: rootEl, rootMargin: '200px', threshold: 0.05 }
+            // Larger rootMargin so images just outside the viewport start loading earlier on mobile
+            { root: rootEl, rootMargin: '600px 0px', threshold: 0.01 }
         );
 
         obs.observe(node);
@@ -120,7 +121,10 @@ const LazyImage: React.FC<{
                     </picture>
                 </div>
             ) : (
-                <div className="w-full h-full bg-gradient-to-b from-zinc-800 to-zinc-900 animate-pulse" />
+                <div
+                    className="w-full h-full loading-placeholder animate-pulse"
+                    style={{ backgroundImage: `url('${getLqip(photo.base)}')` }}
+                />
             )}
         </div>
     );
@@ -136,7 +140,8 @@ const AboutGallery: React.FC = () => {
         if (isGalleryOpen) {
             // Defer starting image loads slightly so the opening animation can finish
             // and avoid heavy main-thread work immediately on click.
-            t = window.setTimeout(() => setPhotosLoadStarted(true), 180);
+            // Reduced from 180ms to 60ms so images start loading faster on slower devices.
+            t = window.setTimeout(() => setPhotosLoadStarted(true), 60);
         } else {
             setPhotosLoadStarted(false);
             if (t) clearTimeout(t);

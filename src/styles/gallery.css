@@ -1,9 +1,22 @@
 /* Responsive gallery rules: auto-fit columns and orientation-aware aspect ratio */
 #gallery-scroll .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  /* Use a responsive minimum column width so very small phones don't introduce horizontal overflow */
+  grid-template-columns: repeat(auto-fit, minmax(clamp(140px, 30vw, 220px), 1fr));
   gap: 1.5rem; /* matches Tailwind gap-6 */
   grid-auto-flow: row dense;
+  /* ensure consistent row sizing to avoid collapsed/uneven grid gaps */
+  grid-auto-rows: 1fr;
+}
+
+/* make items stretch so each cell keeps the intended height */
+#gallery-scroll .gallery-item {
+  display: flex;
+  align-items: stretch;
+}
+#gallery-scroll .gallery-item > .gallery-card {
+  display: flex;
+  flex-direction: column;
 }
 
 /* Default card aspect ratio (portrait-friendly) */
@@ -21,18 +34,83 @@
   }
 }
 
-/* Small screens: slightly taller cards to keep a good visual */
-@media (max-width: 420px) {
-  #gallery-scroll .gallery-card {
-    aspect-ratio: 3 / 4;
-  }
-}
+/* Removed: handled by the 650px small-screen rules which allow natural heights */
 
 /* Smooth image fade when loaded (applies if image becomes visible)
    Images are controlled inline; use opacity transition when loaded via the img onLoad style if desired. */
 #gallery-scroll .gallery-card img {
   transition: opacity 260ms ease, transform 420ms ease;
   opacity: 1;
+  width: 100%;
+  height: auto; /* default to natural height unless larger screens require fill */
+  display: block;
+  object-fit: cover; /* covers for larger cards */
+}
+
+@media (min-width: 651px) {
+  /* On wider viewports let the image fill the card and crop to fit */
+  #gallery-scroll .gallery-card img {
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+/* Use a masonry-like layout on smaller screens so mixed portrait/landscape
+   cards stack without leaving gaps. Placed after defaults to override them. */
+@media (max-width: 900px) {
+  #gallery-scroll .gallery-grid {
+    display: block;
+    column-count: 2;
+    column-gap: 0.75rem;
+  }
+
+  #gallery-scroll .gallery-item {
+    display: inline-block;
+    width: 100%;
+    break-inside: avoid;
+    margin-bottom: 0.75rem;
+  }
+
+  /* Remove fixed aspect-ratio so card height follows the image */
+  #gallery-scroll .gallery-card {
+    aspect-ratio: auto !important;
+    border-radius: 1rem;
+    overflow: hidden;
+    contain-intrinsic-size: 0 0 !important;
+    contain: paint style !important;
+    min-height: 0;
+  }
+
+  /* Make the internal wrapper flow naturally and let images determine height */
+  #gallery-scroll .gallery-card .relative.w-full.h-full {
+    height: auto !important;
+    position: relative;
+  }
+
+  /* Turn the blurred LQIP into a normal block (not absolutely positioned) so
+     it contributes to flow and prevents zero-height placeholders */
+  #gallery-scroll .gallery-card .relative > .absolute.inset-0 {
+    position: relative;
+    height: auto;
+    background-size: cover;
+    background-position: center;
+    filter: blur(6px);
+  }
+
+  /* Images should be full-width, natural height */
+  #gallery-scroll .gallery-card picture,
+  #gallery-scroll .gallery-card img {
+    display: block;
+    width: 100%;
+    height: auto !important;
+    object-fit: contain !important; /* keep the whole photo visible */
+  }
+}
+
+@media (max-width: 650px) {
+  #gallery-scroll .gallery-grid {
+    column-count: 1;
+  }
 }
 #gallery-scroll {
   -webkit-overflow-scrolling: touch;
@@ -40,4 +118,8 @@
 }
 #gallery-scroll .gallery-card .loading-placeholder {
   background: linear-gradient(180deg, #111217 0%, #0f1113 100%);
+  background-size: cover;
+  background-position: center;
+  filter: blur(6px);
 }
+
