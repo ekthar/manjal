@@ -45,7 +45,41 @@ _Sent via Manjal Ayurveda Website_
     };
 
     return (
-        <section id="consultation" className="py-24 bg-theme-base relative border-t border-white/5">
+        <section id="consultation" className="py-24 bg-theme-base relative border-t border-white/5 overflow-hidden">
+            {/* Accumulated Fallen Leaves at Bottom */}
+            <div className="absolute bottom-8 left-[5%] w-6 h-6 opacity-40 rotate-45">
+                {/* @ts-ignore */}
+                <iconify-icon icon="mdi:leaf" width="24" className="text-emerald-600"></iconify-icon>
+            </div>
+            <div className="absolute bottom-12 left-[15%] w-5 h-5 opacity-30 rotate-[-20deg]">
+                {/* @ts-ignore */}
+                <iconify-icon icon="mdi:leaf" width="20" className="text-green-600"></iconify-icon>
+            </div>
+            <div className="absolute bottom-6 left-[25%] w-7 h-7 opacity-50 rotate-[60deg]">
+                {/* @ts-ignore */}
+                <iconify-icon icon="mdi:leaf" width="28" className="text-lime-600"></iconify-icon>
+            </div>
+            <div className="absolute bottom-10 right-[20%] w-6 h-6 opacity-35 rotate-[-45deg]">
+                {/* @ts-ignore */}
+                <iconify-icon icon="mdi:leaf" width="24" className="text-emerald-500"></iconify-icon>
+            </div>
+            <div className="absolute bottom-8 right-[10%] w-5 h-5 opacity-45 rotate-[30deg]">
+                {/* @ts-ignore */}
+                <iconify-icon icon="mdi:leaf" width="20" className="text-green-500"></iconify-icon>
+            </div>
+            <div className="absolute bottom-14 right-[35%] w-6 h-6 opacity-40 rotate-[-60deg]">
+                {/* @ts-ignore */}
+                <iconify-icon icon="mdi:leaf" width="24" className="text-teal-600"></iconify-icon>
+            </div>
+            <div className="absolute bottom-5 left-[40%] w-5 h-5 opacity-30 rotate-[15deg]">
+                {/* @ts-ignore */}
+                <iconify-icon icon="mdi:leaf" width="20" className="text-emerald-700"></iconify-icon>
+            </div>
+            <div className="absolute bottom-16 right-[50%] w-7 h-7 opacity-35 rotate-[-30deg]">
+                {/* @ts-ignore */}
+                <iconify-icon icon="mdi:leaf" width="28" className="text-green-700"></iconify-icon>
+            </div>
+            
             <div className="container mx-auto px-6">
                 
                 <div className="max-w-4xl mx-auto bg-theme-surface rounded-3xl overflow-hidden border border-white/5 flex flex-col md:flex-row shadow-2xl">

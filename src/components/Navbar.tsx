@@ -21,16 +21,16 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenServices }) => {
             aria-label="Main navigation"
             className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-[#030305]/95 backdrop-blur-lg border-b border-white/10' : 'bg-[#030305]/80 backdrop-blur-md border-b border-white/5'}`}>
                 <div className={`w-full px-6 md:px-12 ${scrolled ? 'h-14' : 'h-20'} flex items-center justify-between transition-all duration-300`}> 
-                        <a href="#" aria-label="Go to home" className="relative flex items-center gap-3 leading-none group items-center focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 rounded">
+                        <a href="#" aria-label="Go to home" className="relative flex items-center gap-0 sm:gap-0 leading-none group items-center focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 rounded">
                                 <span className="absolute -left-4 top-1/2 -translate-y-1/2 w-1 h-14 rounded-full bg-gradient-to-b from-purple-500 to-transparent opacity-60 blur-sm pointer-events-none" aria-hidden="true"></span>
                                 <img
                                     src="/logo.png"
                                     alt="Manjal Ayurveda logo"
-                                    className={`w-10 h-10 md:w-12 md:h-12 object-contain shrink-0 transition-transform duration-300 ${scrolled ? 'scale-95' : 'scale-100'}`}
+                                    className={`w-12 h-12 sm:w-16 sm:h-16 md:w-18 md:h-18 object-contain shrink-0 -mr-2 sm:-mr-3 saturate-125 contrast-150 transition-transform duration-300 ${scrolled ? 'scale-90' : 'scale-100'}`}
                                 />
                                 <span className="flex flex-col items-start">
-                                    <span className={`text-2xl md:text-3xl lg:text-4xl font-extrabold text-white tracking-wide font-inter-tight transition-transform duration-300 transform ${scrolled ? 'scale-95' : 'scale-100'} group-hover:text-purple-300`}>MANJAL</span>
-                                    <span className="text-[10px] md:text-xs text-gray-400 tracking-[0.05em] group-hover:text-purple-400 transition-colors uppercase font-medium">Ayurvedic Speciality Clinic</span>
+                                    <span className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#c8a34a] tracking-wide font-inter-tight transition-transform duration-300 transform ${scrolled ? 'scale-95' : 'scale-100'}`}>MANJAL</span>
+                                    <span className="text-[9px] sm:text-[10px] md:text-xs text-amber-200/50 tracking-[0.05em] transition-colors uppercase font-medium">Ayurvedic Speciality Clinic</span>
                                 </span>
                         </a>
             

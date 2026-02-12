@@ -86,6 +86,32 @@ const Hero: React.FC = () => {
   return (
     <section className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-[#030305] pt-24 lg:pt-20">
       
+      {/* Falling Leaves */}
+      <div className="fixed top-0 left-[10%] w-6 h-6 z-[60] pointer-events-none falling-leaf" style={{ animationDelay: '0s' }}>
+        {/* @ts-ignore */}
+        <iconify-icon icon="mdi:leaf" width="24" className="text-emerald-500 drop-shadow-[0_0_8px_rgba(16,185,129,0.4)]"></iconify-icon>
+      </div>
+      <div className="fixed top-0 left-[25%] w-7 h-7 z-[60] pointer-events-none falling-leaf" style={{ animationDelay: '3s' }}>
+        {/* @ts-ignore */}
+        <iconify-icon icon="mdi:leaf" width="28" className="text-green-600 drop-shadow-[0_0_8px_rgba(22,163,74,0.4)]"></iconify-icon>
+      </div>
+      <div className="fixed top-0 left-[45%] w-5 h-5 z-[60] pointer-events-none falling-leaf" style={{ animationDelay: '6s' }}>
+        {/* @ts-ignore */}
+        <iconify-icon icon="mdi:leaf" width="20" className="text-lime-600 drop-shadow-[0_0_8px_rgba(101,163,13,0.4)]"></iconify-icon>
+      </div>
+      <div className="fixed top-0 left-[60%] w-6 h-6 z-[60] pointer-events-none falling-leaf" style={{ animationDelay: '9s' }}>
+        {/* @ts-ignore */}
+        <iconify-icon icon="mdi:leaf" width="24" className="text-emerald-600 drop-shadow-[0_0_8px_rgba(5,150,105,0.4)]"></iconify-icon>
+      </div>
+      <div className="fixed top-0 left-[75%] w-7 h-7 z-[60] pointer-events-none falling-leaf" style={{ animationDelay: '1.5s' }}>
+        {/* @ts-ignore */}
+        <iconify-icon icon="mdi:leaf" width="28" className="text-green-500 drop-shadow-[0_0_8px_rgba(34,197,94,0.4)]"></iconify-icon>
+      </div>
+      <div className="fixed top-0 left-[85%] w-5 h-5 z-[60] pointer-events-none falling-leaf" style={{ animationDelay: '4.5s' }}>
+        {/* @ts-ignore */}
+        <iconify-icon icon="mdi:leaf" width="20" className="text-teal-600 drop-shadow-[0_0_8px_rgba(13,148,136,0.4)]"></iconify-icon>
+      </div>
+      
       {/* --- Ambient Background Effects --- */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Radial Gradient */}
@@ -106,19 +132,23 @@ const Hero: React.FC = () => {
                 <span>Traditional Healing</span>
             </div>
             
-            <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 mb-6">
-              <img
-                src="/logo.png"
-                alt="Manjal Ayurveda logo"
-                className="w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 object-contain shrink-0"
-              />
-              <div className="text-center sm:text-left">
-                <h1 className="text-4xl md:text-5xl xl:text-6xl font-bold tracking-tight text-white leading-[1.1] font-inter-tight">
-                  MANJAL <br/>
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-200 via-fuchsia-200 to-white">
-                    AYURVEDA
-                  </span><br/>
-                  <span className="text-2xl md:text-3xl font-light text-gray-400">SPECIALITY CLINIC</span>
+            <div className="grid grid-cols-1 sm:grid-cols-[auto_1fr] items-center sm:items-start gap-0 sm:gap-0 mb-6">
+              <div className="relative shrink-0 sm:mr-0 sm:mt-1 sm:translate-x-[2px] mb-4 sm:mb-0">
+                <img
+                  src="/logo.png"
+                  alt="Manjal Ayurveda logo"
+                   className="relative h-24 sm:h-32 md:h-[clamp(130px,18vw,200px)] w-auto object-contain saturate-125 contrast-150 mx-auto sm:mx-0"
+                />
+              </div>
+              <div className="text-center sm:text-left mt-0 sm:mt-3">
+                <h1 className="text-4xl md:text-5xl xl:text-6xl font-bold tracking-tight text-white leading-[1.02] font-geist">
+                  <span className="block relative sm:top-5">
+                    <span className="text-[#c8a34a]">MANJAL</span> <br/>
+                    <span className="text-[#1f5b2a]">
+                      AYURVEDA
+                    </span>
+                  </span>
+                  <span className="-mt-2 inline-block text-xl md:text-2xl font-semibold text-[#b69340]">SPECIALITY CLINIC</span>
                 </h1>
               </div>
             </div>
