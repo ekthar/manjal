@@ -3,10 +3,10 @@ import ScrollReveal from './ScrollReveal';
 
 const doctors = [
     {
-        name: "Dr. Shyni",
+        name: "Dr. Shyni Robinson",
         degree: "B.A.M.S, M.D (Ayurveda)",
         speciality: "Chief Physician & Founder",
-        image: "/DR.jpg", 
+        image: "/DR.jpeg", 
         bio: "With over 5 years of clinical experience, Dr. Shyni specializes in neurological disorders and authentic detoxification therapies. She is dedicated to bringing the pure essence of Kerala Ayurveda to the modern world."
     }
 ];

@@ -205,7 +205,7 @@ _Sent via Manjal Ayurveda Website_
                                         <option value="" className="bg-[#0a0a0c] text-gray-500">Select a treatment...</option>
                                         <option value="panchakarma" className="bg-[#0a0a0c]">Panchakarma (Detox)</option>
                                         <option value="abhyanga" className="bg-[#0a0a0c]">Abhyanga (Massage)</option>
-                                        <option value="shirodhara" className="bg-[#0a0a0c]">Shirodhara (Relaxation)</option>
+                                        <option value="shirodhara" className="bg-[#0a0a0c]">(ശിരോധാര)</option>
                                         <option value="consultation" className="bg-[#0a0a0c]">General Ayurvedic Consultation</option>
                                     </select>
                                     <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-500">
