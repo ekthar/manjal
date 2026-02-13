@@ -700,69 +700,76 @@ const Therapies: React.FC = () => {
             </div>
 
             {/* CONTENT SECTION */}
-            <div className="flex-1 p-8 -mt-6 relative z-10 bg-[#0a0a0c]">
-              
-              <h2 className="text-3xl font-bold text-white mb-2 font-inter-tight leading-tight">
-                  {selectedTreatment.name.split('(')[0]}
-                  <br/>
-                  <span style={{ fontFamily: "'Manjari', sans-serif" }} className="text-xl opacity-90 font-normal text-gray-400">
-                      ({selectedTreatment.name.split('(')[1]}
-                  </span>
-              </h2>
-              
-              <p className={`text-sm font-bold uppercase tracking-widest mb-6 ${selectedTreatment.color}`}>
-                {selectedTreatment.shortDescription}
-              </p>
-
-              {/* Decorative Leaf Icon matching your design */}
-              <div className={`mb-6 ${selectedTreatment.color} opacity-80`}>
-                 {/* @ts-ignore */}
-                <iconify-icon icon="solar:leaf-bold-duotone" width="20"></iconify-icon>
+            <div className="flex-1 p-8 -mt-6 relative bg-[#0a0a0c]">
+              <div className="absolute inset-0 pointer-events-none overflow-hidden">
+                <div className="sacred-grid"></div>
+                <div className="herbal-particles"></div>
+                <div className="breathing-glow"></div>
               </div>
 
-              <div className="space-y-8">
-                {/* English Section */}
-                <div>
-                  <h4 className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-4 border-b border-white/10 pb-2">
-                    Benefits & Indications
-                  </h4>
-                  <ul className="space-y-3">
-                    {selectedTreatment.details.map((point, i) => (
-                      <li key={i} className="flex items-start text-gray-300 font-light leading-relaxed text-sm">
-                        <span className="mt-1.5 mr-3 w-1.5 h-1.5 bg-white/40 rounded-full flex-shrink-0"></span>
-                        {point}
-                      </li>
-                    ))}
-                  </ul>
+              <div className="relative z-10">
+                <h2 className="text-3xl font-bold text-white mb-2 font-inter-tight leading-tight">
+                    {selectedTreatment.name.split('(')[0]}
+                    <br/>
+                    <span style={{ fontFamily: "'Manjari', sans-serif" }} className="text-xl opacity-90 font-normal text-gray-400">
+                        ({selectedTreatment.name.split('(')[1]}
+                    </span>
+                </h2>
+                
+                <p className={`text-sm font-bold uppercase tracking-widest mb-6 ${selectedTreatment.color}`}>
+                  {selectedTreatment.shortDescription}
+                </p>
+
+                {/* Decorative Leaf Icon matching your design */}
+                <div className={`mb-6 ${selectedTreatment.color} opacity-80`}>
+                   {/* @ts-ignore */}
+                  <iconify-icon icon="solar:leaf-bold-duotone" width="20"></iconify-icon>
                 </div>
 
-                {/* Malayalam Section */}
-                <div>
-                  <h4 className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-4 border-b border-white/10 pb-2">
-                    Malayalam Details
-                  </h4>
-                  <ul className="space-y-3">
-                    {selectedTreatment.malayalamDetails.map((point, i) => (
-                      <li 
-                        key={i} 
-                        className="flex items-start text-gray-300 font-light leading-relaxed text-sm"
-                        style={{ fontFamily: "'Manjari', sans-serif" }}
-                      >
-                        <span className="mt-2 mr-3 w-1.5 h-1.5 bg-white/40 rounded-full flex-shrink-0"></span>
-                        {point}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
+                <div className="space-y-8">
+                  {/* English Section */}
+                  <div>
+                    <h4 className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-4 border-b border-white/10 pb-2">
+                      Benefits & Indications
+                    </h4>
+                    <ul className="space-y-3">
+                      {selectedTreatment.details.map((point, i) => (
+                        <li key={i} className="flex items-start text-gray-300 font-light leading-relaxed text-sm">
+                          <span className="mt-1.5 mr-3 w-1.5 h-1.5 bg-white/40 rounded-full flex-shrink-0"></span>
+                          {point}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
 
-              <div className="mt-12 pt-8 border-t border-white/5 pb-8">
-                <button
-                    onClick={() => setSelectedTreatment(null)}
-                    className="w-full py-4 rounded-xl bg-white/5 hover:bg-white/10 text-white font-medium transition-all border border-white/5"
-                >
-                    Close
-                </button>
+                  {/* Malayalam Section */}
+                  <div>
+                    <h4 className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-4 border-b border-white/10 pb-2">
+                      Malayalam Details
+                    </h4>
+                    <ul className="space-y-3">
+                      {selectedTreatment.malayalamDetails.map((point, i) => (
+                        <li 
+                          key={i} 
+                          className="flex items-start text-gray-300 font-light leading-relaxed text-sm"
+                          style={{ fontFamily: "'Manjari', sans-serif" }}
+                        >
+                          <span className="mt-2 mr-3 w-1.5 h-1.5 bg-white/40 rounded-full flex-shrink-0"></span>
+                          {point}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="mt-12 pt-8 border-t border-white/5 pb-8">
+                  <button
+                      onClick={() => setSelectedTreatment(null)}
+                      className="w-full py-4 rounded-xl bg-white/5 hover:bg-white/10 text-white font-medium transition-all border border-white/5"
+                  >
+                      Close
+                  </button>
+                </div>
               </div>
             </div>
           </div>
