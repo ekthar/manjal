@@ -97,18 +97,34 @@ _Sent via Manjal Ayurveda Website_
                             </p>
                         </div>
 
-                        <a 
-                            href="https://wa.me/917907178727" 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="w-full bg-[#25D366] hover:bg-[#20bd5a] text-white text-white-forced py-4 px-6 rounded-xl font-bold flex items-center justify-center gap-3 transition-all duration-300 hover:shadow-[0_0_20px_rgba(37,211,102,0.3)] group"
-                        >
-                            {/* @ts-ignore */}
-                            <iconify-icon icon="logos:whatsapp-icon" width="24"></iconify-icon>
-                            <span className="font-inter-tight">Chat on WhatsApp</span>
-                            {/* @ts-ignore */}
-                            <iconify-icon icon="solar:arrow-right-linear" className="group-hover:translate-x-1 transition-transform"></iconify-icon>
-                        </a>
+                        <div className="space-y-4">
+                            <a 
+                                href="https://wa.me/917907178727" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="w-full bg-[#25D366] hover:bg-[#20bd5a] text-white text-white-forced py-4 px-6 rounded-xl font-bold flex items-center justify-center gap-3 transition-all duration-300 hover:shadow-[0_0_20px_rgba(37,211,102,0.3)] group"
+                            >
+                                {/* @ts-ignore */}
+                                <iconify-icon icon="logos:whatsapp-icon" width="24"></iconify-icon>
+                                <span className="font-inter-tight">Chat on WhatsApp</span>
+                                {/* @ts-ignore */}
+                                <iconify-icon icon="solar:arrow-right-linear" className="group-hover:translate-x-1 transition-transform"></iconify-icon>
+                            </a>
+
+                            <a
+                                href="https://instagram.com/manjal_ayurveda"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                title="@manjal_ayurveda"
+                                className="w-full bg-[#1877F2] hover:bg-[#1667d9] text-white text-white-forced py-4 px-6 rounded-xl font-bold flex items-center justify-center gap-3 transition-all duration-300 hover:shadow-[0_0_20px_rgba(24,119,242,0.35)] group"
+                            >
+                                {/* @ts-ignore */}
+                                <iconify-icon icon="logos:instagram-icon" width="22"></iconify-icon>
+                                <span className="font-inter-tight">Connect on Instagram</span>
+                                {/* @ts-ignore */}
+                                <iconify-icon icon="solar:arrow-right-linear" className="group-hover:translate-x-1 transition-transform"></iconify-icon>
+                            </a>
+                        </div>
 
                         <div className="mt-8 pt-8 border-t border-white/10">
                              <p className="text-gray-500 text-xs font-inter-tight text-center">
